@@ -1,10 +1,13 @@
 const express = require("express");
+const http = require("http");
 const app = express();
 const fs = require("fs");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const routeLoggerMiddleware = require("./package/node/middleware/routeLogger");
+const dotenv = require("dotenv");
+dotenv.config();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,11 +26,10 @@ fs.readdirSync(routePath).forEach(function (file) {
   }
 });
 
-app.listen(3000, () => {
-  console.log("port 3000");
-});
+const server = http.createServer(app);
+server.listen(process.env.PORT);
 
-mongoose.connect("mongodb://127.0.0.1:27017/sheik", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_PORT, { useNewUrlParser: true });
 
 mongoose.connection.on("error", function (err) {
   console.log("database connection is error");
