@@ -32,13 +32,11 @@ server.listen(process.env.PORT);
 mongoose.connect(process.env.MONGODB_PORT, { useNewUrlParser: true });
 
 mongoose.connection.on("error", function (err) {
-  console.log("database connection is error");
   console.log(err);
 });
 
 mongoose.connection.on("open", function (err) {
   if (err) {
-    console.log("database error");
     console.log(err);
   } else {
     console.log("database connection is open success ");
