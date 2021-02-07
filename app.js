@@ -5,15 +5,15 @@ const fs = require("fs");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
-const routeLoggerMiddleware = require("./package/node/middleware/routeLogger");
 const dotenv = require("dotenv");
 dotenv.config();
+const cors = require("cors");
+
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-app.use(routeLoggerMiddleware.logIp);
 
 let routePath = "./package/node/route";
 
