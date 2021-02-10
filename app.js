@@ -5,6 +5,10 @@ const fs = require("fs");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
+const mongodburl = process.env.MONGODB_PORT
+  ? process.env.MONGODB_PORT
+  : "mongodb://127.0.0.1:27017/cart";
+const port = process.env.PORT ? process.env.PORT : "8626";
 const dotenv = require("dotenv");
 dotenv.config();
 const cors = require("cors");
@@ -27,9 +31,9 @@ fs.readdirSync(routePath).forEach(function (file) {
 });
 
 const server = http.createServer(app);
-server.listen(process.env.PORT);
+server.listen(port);
 
-mongoose.connect(process.env.MONGODB_PORT, { useNewUrlParser: true });
+mongoose.connect(mongodburl, { useNewUrlParser: true });
 
 mongoose.connection.on("error", function (err) {
   console.log(err);
