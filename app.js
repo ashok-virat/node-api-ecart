@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const mongodburl = process.env.MONGODB_PORT
   ? process.env.MONGODB_PORT
   : "mongodb://127.0.0.1:27017/cart";
-const port = process.env.PORT ? process.env.PORT : "8626";
+const port =  "8626";
 const dotenv = require("dotenv");
 dotenv.config();
 const cors = require("cors");
