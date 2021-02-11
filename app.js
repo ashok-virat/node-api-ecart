@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const mongodburl = process.env.MONGODB_PORT
   ? process.env.MONGODB_PORT
   : "mongodb://127.0.0.1:27017/cart";
-const port =  "8626";
+const port = "8626";
 const dotenv = require("dotenv");
 dotenv.config();
 const cors = require("cors");
@@ -31,9 +31,11 @@ fs.readdirSync(routePath).forEach(function (file) {
 });
 
 const server = http.createServer(app);
-server.listen(port);
+server.listen("8626",()=>{
+  console.log('server listening at port 8626')
+});
 
-mongoose.connect(mongodburl, { useNewUrlParser: true });
+mongoose.connect("mongodb://127.0.0.1:27017/cart", { useNewUrlParser: true });
 
 mongoose.connection.on("error", function (err) {
   console.log(err);
