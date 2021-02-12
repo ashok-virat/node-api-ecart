@@ -1,0 +1,22 @@
+name: Simple SSH Deployment
+on: 
+  push:
+    branches:
+      - feature/cicd
+
+jobs:
+  deployment-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy the server
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_KEY }}
+          port: ${{ secrets.EC2_PORT }}
+          timeout: 10m
+          script: |
+            cd ${{ secrets.EC2_PROJECT_PATH }}
+            sudo git pull origin master
+            sudo pm2 restart cart-app
