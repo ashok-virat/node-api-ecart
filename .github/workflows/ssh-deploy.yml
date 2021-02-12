@@ -2,7 +2,7 @@ name: Simple SSH Deployment
 on: 
   push:
     branches:
-      - feature/cicd
+      - master
 
 jobs:
   deployment-name:
