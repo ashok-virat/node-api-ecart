@@ -5,7 +5,7 @@ let setRouter = (app) => {
 
   app.post(`${baseUrl}/signup`, signup.signup);
   app.get(`${baseUrl}`, (req, res) => {
-    res.send("hi ashok.");
+    res.send("hi virat");
   });
 };
 
