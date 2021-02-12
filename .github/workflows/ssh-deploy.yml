@@ -19,3 +19,4 @@ jobs:
           script: |
             cd ${{ secrets.EC2_PROJECT_PATH }}
             sudo git pull origin master
+            sudo pm2 restart cart-app
